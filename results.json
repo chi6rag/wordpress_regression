@@ -1,7 +1,10 @@
-Feature: My first behave feature # features/first_behave.feature:1
+Feature: Login # features/login.feature:1
 
-  Scenario: Add two numbers           # features/first_behave.feature:3
-    Given I have two integers a and b # None
-    When I add the numbers            # None
-    Then I print the addition result  # None
+  Scenario Outline: Login Happy Path -- @1.1                                       # features/login.feature:8
+    Given On home page I login using "wrong_email@example.com" and "Some Password" # features/steps/login.py:7
+    Then I should stay on login page                                               # features/steps/login.py:15
+
+  Scenario Outline: Login Happy Path -- @1.2                                               # features/login.feature:9
+    Given On home page I login using "wrong_email_2@example.com" and "Some Other Password" # features/steps/login.py:7
+    Then I should stay on login page                                                       # features/steps/login.py:15
 
