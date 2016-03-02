@@ -1,0 +1,7 @@
+Feature: My first behave feature # features/first_behave.feature:1
+
+  Scenario: Add two numbers           # features/first_behave.feature:3
+    Given I have two integers a and b # None
+    When I add the numbers            # None
+    Then I print the addition result  # None
+
