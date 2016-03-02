@@ -9,6 +9,8 @@ class LoginPage:
     def validate_active(cls, driver):
         try:
             driver.find_element_by_id('nux_username')
+            driver.find_element_by_id('nux_password')
+            driver.find_element_by_id('nux_sign_in_button')
         except NoSuchElementException, e:
             return False
 
