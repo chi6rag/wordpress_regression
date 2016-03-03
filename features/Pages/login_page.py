@@ -1,4 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,10 +8,10 @@ class LoginPage:
     @classmethod
     def validate_active(cls, driver):
         try:
-            driver.find_element_by_id('nux_username')
-            driver.find_element_by_id('nux_password')
-            driver.find_element_by_id('nux_sign_in_button')
-        except NoSuchElementException, e:
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'nux_username')))
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'nux_password')))
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'nux_sign_in_button')))
+        except TimeoutException:
             return False
 
     def __init__(self, driver):

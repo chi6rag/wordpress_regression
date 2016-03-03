@@ -17,6 +17,12 @@ Feature: New Post # features/new_post.feature:1
   Scenario Outline: New Post - Happy Path -- @1.1                       # features/new_post.feature:10
     Given On home page I login as a valid user and tap on New Post Icon # features/steps/home_steps.py:8
     When I enter Title as "Valid Title" and Message as "valid message"  # features/steps/new_post_steps.py:7
-    And I press Publish                                                 # features/steps/new_post_steps.py:18
+    And I press Publish                                                 # features/steps/new_post_steps.py:23
     Then I should be taken to home page                                 # features/steps/home_steps.py:16
+
+  Scenario: New Post - Sad Path                                         # features/new_post.feature:12
+    Given On home page I login as a valid user and tap on New Post Icon # features/steps/home_steps.py:8
+    When I enter a blank Title and Message                              # features/steps/new_post_steps.py:18
+    And I press Publish                                                 # features/steps/new_post_steps.py:23
+    Then I should be on new post page                                   # features/steps/new_post_steps.py:29
 
