@@ -1,14 +1,22 @@
 Feature: Login # features/login.feature:1
 
   Scenario Outline: Login Sad Path -- @1.1                                         # features/login.feature:8
-    Given On home page I login using "wrong_email@example.com" and "Some Password" # features/steps/login.py:7
-    Then I should stay on login page                                               # features/steps/login.py:15
+    Given On home page I login using "wrong_email@example.com" and "Some Password" # features/steps/login_steps.py:7
+    Then I should stay on login page                                               # features/steps/login_steps.py:15
 
   Scenario Outline: Login Sad Path -- @1.2                                                 # features/login.feature:9
-    Given On home page I login using "wrong_email_2@example.com" and "Some Other Password" # features/steps/login.py:7
-    Then I should stay on login page                                                       # features/steps/login.py:15
+    Given On home page I login using "wrong_email_2@example.com" and "Some Other Password" # features/steps/login_steps.py:7
+    Then I should stay on login page                                                       # features/steps/login_steps.py:15
 
   Scenario: Login Happy Path                                                  # features/login.feature:11
-    Given On home page I login using "imayanklamba@gmail.com" and "!Abcd1234" # features/steps/login.py:7
-    Then I should be taken to home page                                       # features/steps/login.py:19
+    Given On home page I login using "imayanklamba@gmail.com" and "!Abcd1234" # features/steps/login_steps.py:7
+    Then I should be taken to home page                                       # features/steps/home_steps.py:16
+
+Feature: New Post # features/new_post.feature:1
+
+  Scenario Outline: New Post - Happy Path -- @1.1                       # features/new_post.feature:10
+    Given On home page I login as a valid user and tap on New Post Icon # features/steps/home_steps.py:8
+    When I enter Title as "Valid Title" and Message as "valid message"  # features/steps/new_post_steps.py:7
+    And I press Publish                                                 # features/steps/new_post_steps.py:18
+    Then I should be taken to home page                                 # features/steps/home_steps.py:16
 

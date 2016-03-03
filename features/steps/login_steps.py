@@ -1,5 +1,5 @@
 from behave import *
-from ..pages import *
+from features.pages import *
 
 use_step_matcher("parse")
 
@@ -15,8 +15,3 @@ def step_impl(context, email, password):
 @then('I should stay on login page')
 def step_impl(context):
     LoginPage.validate_active(context.driver)
-
-
-@then('I should be taken to home page')
-def step_impl(context):
-    HomePage.validate_active(context.driver)

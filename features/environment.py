@@ -12,6 +12,10 @@ def before_all(context):
     context.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_capabilities)
 
 
+def before_scenario(context, scenario):
+    context.driver.reset()
+
+
 def after_all(context):
     print("Executing after all")
     context.driver.close_app
