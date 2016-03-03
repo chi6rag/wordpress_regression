@@ -1,7 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from validations import *
 
 TEN_SECONDS = 10
 
@@ -12,13 +9,15 @@ class HomePage:
 
     @classmethod
     def validate_active(cls, driver):
-        try:
-            WebDriverWait(driver, TEN_SECONDS).until(EC.presence_of_element_located((By.ID, 'my_site_title_label')))
-            WebDriverWait(driver, TEN_SECONDS).until(EC.presence_of_element_located((By.ID, 'my_site_subtitle_label')))
-        except NoSuchElementException, exception:
-            return False
+        validate_presence_of_element_located_by_id \
+            ('my_site_title_label', driver, TEN_SECONDS)
+        validate_presence_of_element_located_by_id \
+            ('my_site_subtitle_label', driver, TEN_SECONDS)
 
     def tap_on_new_post_icon(self):
-        WebDriverWait(self.driver, TEN_SECONDS).until(EC.presence_of_element_located((By.ID, 'fab_button')))
-        new_post_button = self.driver.find_element_by_id('fab_button')
+        fab_button_id = 'fab_button'
+        validate_presence_of_element_located_by_id \
+            (fab_button_id, self.driver, TEN_SECONDS)
+        new_post_button = self.driver.find_element_by_id \
+            (fab_button_id)
         new_post_button.click()
